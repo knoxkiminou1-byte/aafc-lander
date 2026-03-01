@@ -283,7 +283,7 @@ export default function Home() {
                 <span className="transition-colors duration-300 group-hover:text-[#0A152A]">Partner With Us</span>
               </a>
             </Button>
-          </ScrollReveal>
+          </div>
         </div>
       </header>
 

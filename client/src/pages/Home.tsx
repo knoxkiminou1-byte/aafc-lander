@@ -102,6 +102,8 @@ export default function Home() {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
+    setSpotlightPos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       const sections = ["home", "mission", "programs", "impact", "join"];

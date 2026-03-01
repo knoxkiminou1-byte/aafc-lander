@@ -96,7 +96,7 @@ const TiltCard = ({ children, className = "" }: TiltCardProps) => {
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
   const [activeNav, setActiveNav] = useState("home");
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
@@ -116,7 +116,7 @@ export default function Home() {
     };
 
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePos({ x: event.clientX, y: event.clientY });
+      setSpotlightPos({ x: event.clientX, y: event.clientY });
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -226,7 +226,7 @@ export default function Home() {
         <div
           className="pointer-events-none absolute inset-0 opacity-60 mix-blend-screen transition-opacity duration-300"
           style={{
-            background: `radial-gradient(circle 600px at ${mousePos.x}px ${mousePos.y}px, rgba(228, 172, 68, 0.15), transparent 80%)`,
+            background: `radial-gradient(circle 600px at ${spotlightPos.x}px ${spotlightPos.y}px, rgba(228, 172, 68, 0.15), transparent 80%)`,
           }}
         />
 

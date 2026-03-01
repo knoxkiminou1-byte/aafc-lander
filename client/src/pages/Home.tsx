@@ -99,6 +99,7 @@ export default function Home() {
   const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
   const [activeNav, setActiveNav] = useState("home");
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
   useEffect(() => {
     setSpotlightPos({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
@@ -282,7 +283,7 @@ export default function Home() {
                 <span className="transition-colors duration-300 group-hover:text-[#0A152A]">Partner With Us</span>
               </a>
             </Button>
-          </div>
+          </ScrollReveal>
         </div>
       </header>
 

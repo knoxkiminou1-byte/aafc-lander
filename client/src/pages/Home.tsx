@@ -184,7 +184,7 @@ export default function Home() {
               <a href="https://app.youform.com/forms/r9uihypu" target="_blank" rel="noopener noreferrer">
                 <span className="absolute inset-0 -z-10 origin-left scale-x-0 bg-[#E4AC44] transition-transform duration-300 ease-out group-hover:scale-x-100" />
                 <span className="flex items-center gap-2 transition-colors duration-300 group-hover:text-[#0A152A]">
-                  Partner With Us <ArrowRight size={16} />
+                  Partner with Us <ArrowRight size={16} />
                 </span>
               </a>
             </Button>
@@ -216,7 +216,7 @@ export default function Home() {
             className="mt-8 rounded-xl bg-[#E4AC44] py-4 text-lg font-bold uppercase tracking-wide text-[#0A152A] transition-transform active:scale-95"
             onClick={() => window.open("https://app.youform.com/forms/r9uihypu", "_blank")}
           >
-            Partner With Us
+            Partner with Us
           </Button>
         </div>
       )}
@@ -239,7 +239,7 @@ export default function Home() {
         <div className="relative z-20 mx-auto max-w-6xl px-6 text-center md:px-12">
           <div className="mb-6 overflow-hidden">
             <h1 className="animate-slide-up-fade text-5xl font-black leading-[1.05] tracking-tighter text-white drop-shadow-lg md:text-7xl lg:text-[5.5rem]">
-              ARTISTS AND <br /> ATHLETES FOR CHANGE
+              Artists and Athletes for Change
             </h1>
           </div>
 
@@ -280,10 +280,10 @@ export default function Home() {
             >
               <a href="https://app.youform.com/forms/r9uihypu" target="_blank" rel="noopener noreferrer">
                 <span className="absolute inset-0 -z-10 origin-bottom scale-y-0 bg-[#E4AC44] transition-transform duration-300 ease-out group-hover:scale-y-100" />
-                <span className="transition-colors duration-300 group-hover:text-[#0A152A]">Partner With Us</span>
+                <span className="transition-colors duration-300 group-hover:text-[#0A152A]">Partner with Us</span>
               </a>
             </Button>
-          </ScrollReveal>
+          </div>
         </div>
       </header>
 
@@ -363,7 +363,7 @@ export default function Home() {
                     </button>
                     <div className="absolute bottom-0 left-0 w-full translate-y-4 bg-gradient-to-t from-[#0A152A] via-[#0A152A]/80 to-transparent p-8 transition-transform duration-500 group-hover:translate-y-0">
                       <p className="text-xl font-bold text-white opacity-0 transition-opacity duration-500 delay-100 group-hover:opacity-100">
-                        Building disciplined digital leaders
+                        Empowering the next generation of leaders
                       </p>
                     </div>
                   </div>
@@ -392,13 +392,13 @@ export default function Home() {
                 num: "01",
                 icon: <Palette size={32} />,
                 title: "Creative and Digital Innovation",
-                desc: "Advance your creative work while mastering media strategy, digital production, and business tools. Collaborate with professionals and explore industries.",
+                desc: "Advance your creative work while mastering media strategy, digital production, and business tools. Collaborate with professionals and explore creative industries that connect art, technology, and opportunity.",
               },
               {
                 num: "02",
                 icon: <Trophy size={32} />,
-                title: "Athletic Leadership and Technology",
-                desc: "Strengthen your performance mindset while developing personal branding, digital fluency, and business awareness. Learn directly from athletes and coaches.",
+                title: "Athletic Leadership",
+                desc: "Strengthen your performance mindset while developing personal branding, digital fluency, and business awareness. Learn directly from athletes and coaches who guide you through growth and career transitions.",
               },
               {
                 num: "03",
@@ -452,7 +452,7 @@ export default function Home() {
                 color: "gold",
               },
               {
-                title: "Cultural & Community Advancement",
+                title: "Cultural and Community Advancement",
                 text: "Graduates become community builders who use creativity, discipline, and technology to strengthen local systems and inspire progress.",
                 color: "gold",
               },
@@ -510,7 +510,7 @@ export default function Home() {
                 <div className="mb-6 md:mb-0 md:mr-8">
                   <div className="mb-2 flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#E4AC44]">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-[#E4AC44]" />
-                    For Youth Ages 18 to 24
+                    For Youth Ages 18 to 24:
                   </div>
                   <p className="font-medium text-white/90">
                     Join a cohort that provides mentorship, hands-on training, and real-world
@@ -529,7 +529,7 @@ export default function Home() {
             <ScrollReveal delay={300}>
               <div className="flex flex-col items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] md:flex-row">
                 <div className="mb-6 md:mb-0 md:mr-8">
-                  <div className="mb-2 text-sm font-bold uppercase tracking-widest text-blue-400">
+                  <div className="mb-2 text-sm font-bold uppercase tracking-widest text-[#E4AC44]">
                     For Supporters
                   </div>
                   <p className="font-medium text-white/90">
@@ -541,7 +541,7 @@ export default function Home() {
                   className="w-full shrink-0 rounded-full border-2 border-[#E4AC44] bg-transparent px-8 py-3 font-bold uppercase tracking-wide text-[#E4AC44] transition-all duration-200 hover:scale-105 hover:bg-[#E4AC44] hover:text-[#0A152A] active:scale-95 md:w-auto"
                   onClick={() => window.open("https://app.youform.com/forms/r9uihypu", "_blank")}
                 >
-                  Partner With Us
+                  Partner with Us
                 </Button>
               </div>
             </ScrollReveal>
@@ -580,7 +580,7 @@ export default function Home() {
             <div>
               <h4 className="mb-6 text-sm font-bold uppercase tracking-wider text-white">Get Involved</h4>
               <ul className="space-y-4 text-sm font-medium text-white/60">
-                {["Apply Now", "Partner With Us", "Contact"].map((link) => (
+                {["Apply Now", "Partner with Us", "Contact"].map((link) => (
                   <li key={link}>
                     <a href="#join" className="inline-block transition-transform hover:translate-x-1 hover:text-[#E4AC44]">
                       {link}

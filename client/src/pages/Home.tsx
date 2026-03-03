@@ -529,7 +529,7 @@ export default function Home() {
             <ScrollReveal delay={300}>
               <div className="flex flex-col items-center justify-between rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] md:flex-row">
                 <div className="mb-6 md:mb-0 md:mr-8">
-                  <div className="mb-2 text-sm font-bold uppercase tracking-widest text-blue-400">
+                  <div className="mb-2 text-sm font-bold uppercase tracking-widest text-[#E4AC44]">
                     For Supporters
                   </div>
                   <p className="font-medium text-white/90">

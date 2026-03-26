@@ -14,6 +14,14 @@ import { useActiveSection } from "@/hooks/useActiveSection";
 export default function Home() {
   const activeSection = useActiveSection(navItems.map((item) => item.id));
 
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "mission", label: "Mission" },
+    { id: "programs", label: "Programs" },
+    { id: "impact", label: "Impact" },
+    { id: "join", label: "Join Us" },
+  ];
+
   return (
     <div className="bg-[var(--color-bg)] text-[var(--color-text)]">
       <SiteHeader activeSection={activeSection} />

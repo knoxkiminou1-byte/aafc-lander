@@ -211,6 +211,19 @@ h6,
   color: var(--color-accent);
 }
 
+@keyframes buildsMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.builds-marquee {
+  animation: buildsMarquee 34s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

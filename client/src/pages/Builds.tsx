@@ -46,6 +46,12 @@ const projects: BuildProject[] = [
     summary: "A boutique preview focused on product discovery, visual merchandising, and brand polish.",
   },
   {
+    title: "Blondies Website",
+    url: "https://blondies-site.vercel.app/",
+    audience: "Beauty clients and boutique-style visitors",
+    summary: "A polished beauty brand preview designed around visual appeal, services, and a confident first impression.",
+  },
+  {
     title: "Financial Advisor Preview Website",
     url: "https://financial-advisor-preview.vercel.app/",
     audience: "Financial planning clients and advisory prospects",

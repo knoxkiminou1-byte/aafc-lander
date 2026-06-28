@@ -3,6 +3,7 @@ import { ExternalLink } from "lucide-react";
 type BuildProject = {
   title: string;
   url: string;
+  previewImage: string;
   audience: string;
   summary: string;
 };
@@ -11,88 +12,111 @@ const projects: BuildProject[] = [
   {
     title: "Baysound Collective Website",
     url: "https://www.dgrpbaysound.com/",
+    previewImage: "/build-previews/baysound.jpg",
     audience: "Music listeners and collaborators",
     summary: "A bold creative profile that helps visitors immediately understand the sound, identity, and booking direction.",
   },
   {
     title: "Linea Collective Website",
     url: "https://www.lineaculture.com/",
+    previewImage: "/build-previews/linea.jpg",
     audience: "Community partners and supporters",
     summary: "Built to explain mission and values clearly, while showcasing active programs and cultural impact.",
   },
   {
     title: "AAFC Builders Website",
     url: "https://www.aafcbuilders.org/",
+    previewImage: "/build-previews/aafc.jpg",
     audience: "Organizations, sponsors, and program leads",
     summary: "A central story-driven website focused on services, outcomes, and partnership trust.",
   },
   {
     title: "Kiminou Knox Website",
     url: "https://kiminouknox.com/",
+    previewImage: "/build-previews/kiminou-knox.jpg",
     audience: "Readers and professional network",
     summary: "A personal brand build that balances author voice, portfolio highlights, and clear credibility.",
   },
   {
     title: "Muisi Artist Website",
     url: "https://www.muisikongo.com/",
+    previewImage: "/build-previews/muisi-kongo.jpg",
     audience: "Art collectors and event curators",
     summary: "A clean visual-first experience designed to present artistic work with emotional clarity and confidence.",
   },
   {
     title: "Seasonal Artist Website",
     url: "https://muisi.vercel.app/",
+    previewImage: "/build-previews/muisi-seasonal.jpg",
     audience: "Returning fans and campaign audiences",
     summary: "A seasonal concept version made for timed releases, featured drops, and focused storytelling.",
   },
   {
     title: "Ricardo Scales Piano Website",
     url: "https://ricardoscalespiano.com/",
+    previewImage: "/build-previews/ricardo-scales.jpg",
     audience: "Event planners and booking clients",
     summary: "Performance-centered web presence emphasizing talent, trust, and conversion-ready contact flow.",
   },
   {
     title: "Marchitects Builders Website",
     url: "https://www.marchitects.builders/",
+    previewImage: "/build-previews/marchitects-builders.jpg",
     audience: "Homeowners and project decision-makers",
     summary: "A polished local business experience crafted to communicate reliability, quality, and delivery process.",
   },
   {
     title: "SL Montgomery Law Website",
     url: "https://slmontgomerylaw-upgrade.vercel.app/",
+    previewImage: "/build-previews/sl-montgomery-law.jpg",
     audience: "Law clients and referral partners",
     summary: "A legal-focused design with confident messaging and structured trust signals for potential clients.",
   },
   {
-    title: "Wellness Escape Website",
-    url: "https://wellnessescape.vercel.app/",
-    audience: "Wellness clients and retreat seekers",
-    summary: "A calm, trust-first wellness experience built to showcase services, outcomes, and booking confidence.",
-  },
-  {
-    title: "Justice Path Legal Website",
-    url: "https://justicepathlegal.vercel.app/",
-    audience: "Law clients and legal referral partners",
-    summary: "A legal brand showcase focused on clarity, credibility, and strong first-contact messaging for clients.",
-  },
-  {
-    title: "Urban Roots Community Website",
-    url: "https://urbanrootscommunity.vercel.app/",
-    audience: "Families, donors, and local community partners",
-    summary: "A community-centered site that highlights programs, impact stories, and support pathways.",
-  },
-  {
     title: "Hair Two Red Website",
     url: "https://hair-two-red.vercel.app/",
+    previewImage: "/build-previews/hair-two-red.jpg",
     audience: "Beauty clients and style-focused visitors",
     summary: "A modern beauty brand showcase designed to highlight services, portfolio looks, and client trust.",
+  },
+  {
+    title: "LONHA Law Website",
+    url: "https://lonha-website.vercel.app/",
+    previewImage: "/build-previews/lonha.jpg",
+    audience: "Families and special education clients",
+    summary: "A bilingual, education-first legal website that explains services, trust signals, and next steps clearly.",
+  },
+  {
+    title: "Social Following Studios Website",
+    url: "https://www.socialfollowing.shop/",
+    previewImage: "/build-previews/social-following.jpg",
+    audience: "Creators, founders, and service businesses",
+    summary: "A conversion-focused studio website for audience growth, outreach systems, and managed communication infrastructure.",
+  },
+  {
+    title: "Blackwell Law Website",
+    url: "https://blackwell-law.vercel.app/",
+    previewImage: "/build-previews/blackwell-law.jpg",
+    audience: "Criminal defense clients and referral partners",
+    summary: "A polished legal presence built around credibility, urgent contact paths, and clear defense services.",
+  },
+  {
+    title: "Blondies Salon Website",
+    url: "https://blondies-site-skf5.vercel.app/",
+    previewImage: "/build-previews/blondies.jpg",
+    audience: "Salon clients and beauty service shoppers",
+    summary: "A bright local salon website designed to highlight services, booking confidence, and brand personality.",
+  },
+  {
+    title: "Ryan Estate Law Website",
+    url: "https://ryan-law.vercel.app/",
+    previewImage: "/build-previews/ryan-law.jpg",
+    audience: "Estate planning and elder law clients",
+    summary: "A professional legal website that frames planning services with warmth, clarity, and direct consultation paths.",
   },
 ];
 
 const rollingItems = [...projects, ...projects];
-
-function previewUrl(url: string) {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1400`;
-}
 
 export default function Builds() {
   return (
@@ -129,11 +153,10 @@ export default function Builds() {
             >
               <div className="relative aspect-video bg-[#121d3d]">
                 <img
-                  src={previewUrl(project.url)}
+                  src={project.previewImage}
                   alt={`${project.title} preview`}
                   loading="lazy"
                   decoding="async"
-                  referrerPolicy="no-referrer"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060914]/85 to-[#060914]/10" />

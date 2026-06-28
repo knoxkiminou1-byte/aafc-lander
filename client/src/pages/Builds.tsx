@@ -76,12 +76,6 @@ const projects: BuildProject[] = [
     summary: "A respectful service preview designed around clarity, care, and immediate support pathways.",
   },
   {
-    title: "SL Montgomery Law Website",
-    url: "https://slmontgomerylaw-upgrade.vercel.app/",
-    audience: "Law clients and referral partners",
-    summary: "A legal-focused design with confident messaging and structured trust signals for potential clients.",
-  },
-  {
     title: "AAFC Builders Website",
     url: "https://www.aafcbuilders.org/",
     audience: "Organizations, sponsors, and program leads",

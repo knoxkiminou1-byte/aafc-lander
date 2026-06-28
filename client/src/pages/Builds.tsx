@@ -128,6 +128,27 @@ const projects: BuildProject[] = [
     audience: "Music listeners, collaborators, and visual culture audiences",
     summary: "A compact artist and culture site that presents sound, identity, and creative direction with a strong visual point of view.",
   },
+  {
+    title: "Dexterous Barber Lounge Website",
+    url: "https://www.dexterousbarberlounge.com/",
+    previewImage: "/build-previews/dexterous-barber-lounge.jpg",
+    audience: "Barbershop clients and grooming culture audiences",
+    summary: "A bold visual landing experience that gives the barber lounge a sharp, memorable digital presence.",
+  },
+  {
+    title: "Pan African City Alive Website",
+    url: "https://pan-african-city-alive-preview.vercel.app/",
+    previewImage: "/build-previews/pan-african-city-alive.jpg",
+    audience: "Cultural retail customers and East Palo Alto community members",
+    summary: "A vibrant cultural retail experience built around community, commerce, events, and heritage storytelling.",
+  },
+  {
+    title: "FMLY BZNS Website",
+    url: "https://fmlybzns.com/",
+    previewImage: "/build-previews/fmly-bzns.jpg",
+    audience: "Global culture, music, and event audiences",
+    summary: "A culture platform website designed to connect music, events, merchandise, collaborations, and community energy.",
+  },
 ];
 
 const rollingItems = [...projects, ...projects];

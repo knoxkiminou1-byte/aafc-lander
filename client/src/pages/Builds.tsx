@@ -114,6 +114,20 @@ const projects: BuildProject[] = [
     audience: "Estate planning and elder law clients",
     summary: "A professional legal website that frames planning services with warmth, clarity, and direct consultation paths.",
   },
+  {
+    title: "Drew Center Pharmacy Website",
+    url: "https://www.drew-pharmacy.com/",
+    previewImage: "/build-previews/drew-pharmacy.jpg",
+    audience: "Pharmacy patients and East Palo Alto community members",
+    summary: "A community pharmacy website built to make services, location details, and patient support easy to understand.",
+  },
+  {
+    title: "AndreasOne Website",
+    url: "https://www.andreasone.co/",
+    previewImage: "/build-previews/andreas-one.jpg",
+    audience: "Music listeners, collaborators, and visual culture audiences",
+    summary: "A compact artist and culture site that presents sound, identity, and creative direction with a strong visual point of view.",
+  },
 ];
 
 const rollingItems = [...projects, ...projects];

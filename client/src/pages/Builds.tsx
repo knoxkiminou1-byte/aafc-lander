@@ -4,6 +4,7 @@ import type { SyntheticEvent } from "react";
 type BuildProject = {
   title: string;
   url: string;
+  previewImage: string;
   audience: string;
   summary: string;
 };
@@ -24,6 +25,7 @@ const projects: BuildProject[] = [
   {
     title: "Baysound Collective Website",
     url: "https://www.dgrpbaysound.com/",
+    previewImage: "/build-previews/baysound.jpg",
     audience: "Music listeners and collaborators",
     summary: "A bold creative profile that helps visitors immediately understand the sound, identity, and booking direction.",
   },
@@ -72,6 +74,7 @@ const projects: BuildProject[] = [
   {
     title: "Linea Collective Website",
     url: "https://www.lineaculture.com/",
+    previewImage: "/build-previews/linea.jpg",
     audience: "Community partners and supporters",
     summary: "Built to explain mission and values clearly, while showcasing active programs and cultural impact.",
   },
@@ -96,12 +99,14 @@ const projects: BuildProject[] = [
   {
     title: "AAFC Builders Website",
     url: "https://www.aafcbuilders.org/",
+    previewImage: "/build-previews/aafc.jpg",
     audience: "Organizations, sponsors, and program leads",
     summary: "A central story-driven website focused on services, outcomes, and partnership trust.",
   },
   {
     title: "Kiminou Knox Website",
     url: "https://kiminouknox.com/",
+    previewImage: "/build-previews/kiminou-knox.jpg",
     audience: "Readers and professional network",
     summary: "A personal brand build that balances author voice, portfolio highlights, and clear credibility.",
   },
@@ -126,6 +131,7 @@ const projects: BuildProject[] = [
   {
     title: "Marchitects Builders Website",
     url: "https://www.marchitects.builders/",
+    previewImage: "/build-previews/marchitects-builders.jpg",
     audience: "Homeowners and project decision-makers",
     summary: "A polished local business experience crafted to communicate reliability, quality, and delivery process.",
   },
@@ -201,7 +207,7 @@ export default function Builds() {
               <div className="absolute -inset-3 translate-y-7 rounded-[1.75rem] bg-black/45 blur-xl transition duration-500 group-hover:translate-y-9 group-hover:bg-black/60" />
               <div className="relative aspect-video overflow-hidden rounded-[1.35rem] border border-white/20 bg-[#121d3d] shadow-[0_24px_45px_rgba(0,0,0,0.45),0_1px_0_rgba(255,255,255,0.18)_inset] ring-1 ring-white/10 transition duration-500 [transform:rotateX(6deg)_rotateY(-8deg)_translateZ(0)] group-hover:border-[#f0bc5a]/70 group-hover:shadow-[0_34px_70px_rgba(0,0,0,0.58),0_0_42px_rgba(240,188,90,0.16)] group-hover:[transform:rotateX(0deg)_rotateY(0deg)_translateZ(36px)]">
                 <img
-                  src={previewUrl(project.url)}
+                  src={project.previewImage}
                   alt={`${project.title} preview`}
                   loading="lazy"
                   decoding="async"

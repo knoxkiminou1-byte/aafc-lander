@@ -1,0 +1,17 @@
+{
+  "name": "AAFC Builders",
+  "short_name": "AAFC",
+  "description": "Artists and Athletes for Change builder pathways.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0B1A3A",
+  "icons": [
+    {
+      "src": "/aafc-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

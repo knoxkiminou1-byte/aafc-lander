@@ -15,8 +15,20 @@ Purpose: route real client/work leads and job/role leads from Kiminou's Gmail to
 3. Copy `Code.gs` and `appsscript.json` into that project.
 4. Add Script Property `SLACK_WEBHOOK_URL` with the real Slack webhook URL.
 5. Run `dryRunRecentLeads()` and inspect the scores before enabling delivery.
-6. Send one controlled test payload to a private/test destination first.
+6. Run `runSyntheticTestAndVerify()` to create one authorized self-addressed test lead, route it once, and prove the second pass posts zero duplicates.
 7. Run `installFiveMinuteTrigger()` only after the dry run and test are approved.
+
+## Verified deployment
+
+On 2026-08-21, the router was authorized and tested in the production Google account against Slack channel `#lead-router-inbox`, where Rashida is a confirmed member.
+
+- Synthetic first pass: 1 thread scanned, 1 Slack post.
+- Immediate second pass: 0 threads scanned, 0 Slack posts.
+- Duplicate prevention: passed.
+- Slack receipt: confirmed with qualification score 13 and the no-reply notice.
+- Dry run: 30 recent inbox threads reviewed; none reached the live-post threshold of 5.
+- Trigger: one time-based `routeNewLeads` trigger installed at a five-minute interval.
+- Customer-facing email: none sent; the only email created was the authorized self-addressed synthetic test.
 
 ## Qualification model
 Client/work inquiries score highest when they contain signals such as website work, automation, CRM, funnels, project inquiries, quotes, booking, contact-form submissions, or Zoho lead language.

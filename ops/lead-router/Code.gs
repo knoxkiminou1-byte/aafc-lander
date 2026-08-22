@@ -8,19 +8,40 @@ const ROUTER = {
 const POSITIVE_SIGNALS = [
   [/website|web design|web developer|landing page|redesign/i, 3],
   [/automation|crm|funnel|workflow|integration/i, 3],
-  [/project inquiry|quote|proposal|consultation|book a call|booking/i, 3],
-  [/marketing|content strategy|lead generation|social media/i, 2],
-  [/hiring|job opening|role|opportunity|interview/i, 2],
+  [/project inquiry|request(?:ing)? a quote|need a quote|proposal request|consultation request|book a call|contact form|new lead|form submission|zoho crm/i, 4],
+  [/need (?:help|support).*(?:marketing|content|social media)|looking for.*(?:marketing|content|social media)|interested in.*(?:marketing|content|social media)/i, 3],
+  [/hiring|job opening|interview request|role with|position with/i, 3],
   [/developer|marketing coordinator|automation specialist|consultant/i, 2],
-  [/contact form|new lead|form submission|zoho crm/i, 4],
 ];
 
 const NEGATIVE_SIGNALS = [
   [/apartment|lease|leasing|housing|rental application/i, -8],
-  [/newsletter|daily digest|unsubscribe|promotion|sale ends/i, -4],
+  [/newsletter|daily digest|unsubscribe|promotion|sale ends|shop now|view in browser/i, -8],
   [/flight|airline|college|university|financial aid|fafsa/i, -8],
   [/order shipped|delivery update|receipt|password reset/i, -6],
-  [/linkedin.*insights|salary.*job openings/i, -3],
+  [/linkedin.*insights|salary.*job openings|recommended jobs|job alert/i, -8],
+  [/price drop|deal|discount|limited time|save \d+%|special offer|book your trip|cruise|vacation/i, -10],
+];
+
+const HARD_EXCLUDE_SIGNALS = [
+  /unsubscribe/i,
+  /view (?:this email )?in (?:your )?browser/i,
+  /manage (?:your )?(?:email )?preferences/i,
+  /price drop/i,
+  /sale ends/i,
+  /limited[- ]time offer/i,
+  /shop now/i,
+  /book your (?:trip|cruise|stay|flight)/i,
+  /cruisebound/i,
+  /temu/i,
+  /shein/i,
+  /aliexpress/i,
+  /starbucks/i,
+  /marriott bonvoy/i,
+  /quora digest/i,
+  /medium daily digest/i,
+  /linkedin premium/i,
+  /tiktok shop/i,
 ];
 
 function routeNewLeads() {
@@ -42,11 +63,11 @@ function routeThreads_(search) {
     const message = thread.getMessages().slice(-1)[0];
     const candidate = classifyMessage_(message);
 
-    if (candidate.score >= ROUTER.minScore) {
+    if (!candidate.hardExcluded && candidate.score >= ROUTER.minScore) {
       postLeadToSlack_(webhook, candidate);
       thread.addLabel(processed);
       result.posted += 1;
-    } else if (candidate.score >= 2) {
+    } else if (!candidate.hardExcluded && candidate.score >= 2) {
       thread.addLabel(review);
       thread.addLabel(processed);
       result.reviewed += 1;
@@ -67,10 +88,19 @@ function classifyMessage_(message) {
   let score = 0;
   const reasons = [];
 
+  const activeAccount = (Session.getActiveUser().getEmail() || '').toLowerCase();
+  const normalizedFrom = from.toLowerCase();
+  const sentBySelf = activeAccount && normalizedFrom.includes(activeAccount);
+  const hardMatches = HARD_EXCLUDE_SIGNALS.filter(pattern => pattern.test(text));
+  const hardExcluded = sentBySelf || hardMatches.length > 0;
+
+  if (sentBySelf) reasons.push('HARD EXCLUDE: sent by active account');
+  hardMatches.forEach(pattern => reasons.push(`HARD EXCLUDE: ${pattern.source}`));
+
   POSITIVE_SIGNALS.forEach(([pattern, points]) => {
     if (pattern.test(text)) {
       score += points;
-      reasons.push(`${points > 0 ? '+' : ''}${points} ${pattern.source}`);
+      reasons.push(`+${points} ${pattern.source}`);
     }
   });
   NEGATIVE_SIGNALS.forEach(([pattern, points]) => {
@@ -80,7 +110,7 @@ function classifyMessage_(message) {
     }
   });
 
-  const category = /hiring|job opening|interview|role/i.test(text)
+  const category = /hiring|job opening|interview request|role with|position with/i.test(text)
     ? 'JOB / ROLE LEAD'
     : 'CLIENT / WORK LEAD';
 
@@ -88,6 +118,7 @@ function classifyMessage_(message) {
     id: message.getId(),
     category,
     score,
+    hardExcluded,
     reasons,
     subject,
     from,
@@ -127,6 +158,7 @@ function dryRunRecentLeads() {
       subject: result.subject,
       from: result.from,
       score: result.score,
+      hardExcluded: result.hardExcluded,
       category: result.category,
     };
   });
@@ -158,13 +190,15 @@ function runSyntheticTestAndVerify() {
   }
   if (!found.length) throw new Error('Synthetic test message did not appear in Gmail search.');
 
-  const firstPass = routeThreads_(search);
-  const secondPass = routeThreads_(search);
+  // Synthetic self-mail is intentionally hard-excluded in normal routing now.
+  // Verify classification directly rather than posting it to Slack.
+  const message = found[0].getMessages().slice(-1)[0];
+  const classification = classifyMessage_(message);
   const verification = {
     subject,
-    firstPass,
-    secondPass,
-    duplicatePrevented: firstPass.posted === 1 && secondPass.posted === 0,
+    score: classification.score,
+    hardExcluded: classification.hardExcluded,
+    expectedSelfExclusion: classification.hardExcluded === true,
   };
   console.log(JSON.stringify(verification));
   return verification;

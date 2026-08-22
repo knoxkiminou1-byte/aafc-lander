@@ -8,6 +8,12 @@ Status: **OUTBOUND PACKAGE READY / REAL DATASET NOT YET VERIFIED**
 - Gmail contains the finalized August 1 handoff email to Rashida with an attached archive named `handoff-to-rashida.zip`. A second, slightly earlier copy of the same archive is also present in the same Gmail thread.
 - The final email says the archive's delivery record was updated with the successful Gmail delivery metadata.
 - Slack history confirms that Dealership Data was an assigned revenue deliverable and repeatedly describes the intended YES → sample → conversation workflow.
+- The older SALES & GROWTH record says the dealership records "already exist and get pulled." Treat that as evidence that a dataset may have existed historically, not as proof that the current recoverable file, provenance, licensing, or send state is verified now.
+
+## Evidence conflict that must stay explicit
+The historical SALES & GROWTH record says dealership records already existed and were pulled. A later August 1 executive revenue handoff, however, treated the dealership data source, licensing, dataset, and sample as unresolved. No currently accessible authoritative file resolves that conflict.
+
+Therefore the correct state is **RECOVERY REQUIRED**, not "the data never existed" and not "the data is ready to send."
 
 ## What is not verified
 The accessible records reviewed do **not** establish that the real dealership dataset itself is currently recoverable or safe to use.
@@ -20,7 +26,7 @@ Specifically, no verified current file has been located that contains:
 - proof that the first dealership campaign batch was actually sent;
 - proof that a prospect replied YES and received a sample.
 
-The August 1 executive revenue handoff explicitly treated the dealership data source, licensing, dataset, and sample as unresolved at that time. Later Gmail searches for dealership/dealer/data-sample outreach found the handoff messages but no verified dealership campaign sends.
+Later Gmail searches for dealership/dealer/data-sample outreach found the handoff messages but no verified dealership campaign sends.
 
 ## Handoff archive recovery note
 The finalized `handoff-to-rashida.zip` is confirmed to exist as a Gmail attachment. The connected Gmail interface exposes its attachment metadata but does not currently expose ZIP attachment contents as a readable file. The raw MIME confirms the archive is physically present and lists project-status/documentation members, but this is not enough to claim the real dealership dataset is inside it.

@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Builds from "./pages/Builds";
 import Home from "./pages/Home";
 import Research from "./pages/Research";
+import Wiki from "./pages/Wiki";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -15,6 +16,8 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/builds"} component={Builds} />
       <Route path={"/research"} component={Research} />
+      <Route path={"/wiki"} component={Wiki} />
+      <Route path={"/wiki/:slug"} component={Wiki} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

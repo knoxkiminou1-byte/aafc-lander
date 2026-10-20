@@ -663,6 +663,11 @@ export default function Home() {
         .animate-slide-up { animation: slide-up 0.8s ease-out both; }
 
         @media (prefers-reduced-motion: reduce) {
+          .animate-slide-up-fade,
+          .animate-slide-up {
+            opacity: 1 !important;
+            transform: none !important;
+          }
           .animate-float-slow,
           .animate-float-delayed,
           .animate-slide-up-fade,

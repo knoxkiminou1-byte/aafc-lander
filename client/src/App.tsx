@@ -2,17 +2,21 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
+import { lazy, Suspense } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Builds from "./pages/Builds";
 import Home from "./pages/Home";
-import Research from "./pages/Research";
-import Wiki from "./pages/Wiki";
+import SEOManager from "./components/SEOManager";
+
+const Builds = lazy(() => import("./pages/Builds"));
+const Research = lazy(() => import("./pages/Research"));
+const Wiki = lazy(() => import("./pages/Wiki"));
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
-    <Switch>
+    <Suspense fallback={<main role="status" aria-live="polite" className="flex min-h-screen items-center justify-center bg-background text-foreground">Loading page...</main>}>
+      <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/builds"} component={Builds} />
       <Route path={"/research"} component={Research} />
@@ -21,7 +25,8 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </Suspense>
   );
 }
 
@@ -39,6 +44,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <SEOManager />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

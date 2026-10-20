@@ -1,0 +1,30 @@
+{
+  "siteUrl": "https://www.aafcbuilders.org",
+  "organization": "AAFC Builders",
+  "pages": [
+    {
+      "path": "/",
+      "title": "AAFC Builders | Websites, Creators & Community Projects",
+      "description": "Explore AAFC Builders websites, creative technology, mentorship, and community projects from Artists and Athletes for Change.",
+      "heading": "Artists and Athletes for Change"
+    },
+    {
+      "path": "/builds",
+      "title": "Websites & Digital Projects | AAFC Builders",
+      "description": "Explore websites, digital products, and project showcases developed by AAFC Builders for artists, businesses, and community organizations.",
+      "heading": "AAFC Builds & Digital Projects"
+    },
+    {
+      "path": "/research",
+      "title": "AI Safety Research & Evaluations | AAFC Builders",
+      "description": "Explore AAFC Builders' AI safety research, experimental evaluations, public demonstrations, and links to reproducible source repositories.",
+      "heading": "AI Safety Research"
+    },
+    {
+      "path": "/wiki",
+      "title": "Guides, Services & Projects | AAFC Builders Wiki",
+      "description": "Read AAFC Builders' guides to websites, project planning, services, technology, and community work across nine public wiki articles.",
+      "heading": "The AAFC Wiki"
+    }
+  ]
+}

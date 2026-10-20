@@ -8,6 +8,7 @@ import Builds from "./pages/Builds";
 import Home from "./pages/Home";
 import Research from "./pages/Research";
 import Wiki from "./pages/Wiki";
+import SEOManager from "./components/SEOManager";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -39,6 +40,7 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
+          <SEOManager />
           <Router />
         </TooltipProvider>
       </ThemeProvider>

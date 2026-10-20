@@ -174,6 +174,13 @@ export default function Home() {
                 />
               </button>
             ))}
+            <a
+              href="/wiki"
+              className="group relative overflow-hidden transition-colors hover:text-[#E4AC44]"
+            >
+              <span className="relative z-10">Wiki</span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#E4AC44] transition-all duration-300 group-hover:w-full" />
+            </a>
           </div>
 
           <div className="hidden items-center md:flex">
@@ -212,6 +219,13 @@ export default function Home() {
               {item.label}
             </button>
           ))}
+          <a
+            href="/wiki"
+            className="animate-slide-up border-b border-white/10 pb-4 text-left text-2xl font-bold text-white"
+            style={{ animationDelay: `${navItems.length * 100}ms` }}
+          >
+            Wiki
+          </a>
           <Button
             className="mt-8 rounded-xl bg-[#E4AC44] py-4 text-lg font-bold uppercase tracking-wide text-[#0A152A] transition-transform active:scale-95"
             onClick={() => window.open("https://app.youform.com/forms/r9uihypu", "_blank")}

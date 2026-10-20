@@ -1,10 +1,11 @@
 import { ExternalLink } from "lucide-react";
 import type { SyntheticEvent } from "react";
+import GitHubStats from "@/components/builds/GitHubStats";
 
 type BuildProject = {
   title: string;
   url: string;
-  previewImage: string;
+  previewImage?: string;
   audience: string;
   summary: string;
 };
@@ -309,6 +310,8 @@ export default function Builds() {
                     <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
                 </div>
+
+                <GitHubStats repo={new URL(system.githubUrl).pathname.split("/").filter(Boolean)[1] || ""} />
               </div>
 
               <div className="relative z-10 min-h-[330px] p-5 md:p-8">
@@ -365,7 +368,7 @@ export default function Builds() {
               <div className="absolute -inset-3 translate-y-7 rounded-[1.75rem] bg-black/45 blur-xl transition duration-500 group-hover:translate-y-9 group-hover:bg-black/60" />
               <div className="relative aspect-video overflow-hidden rounded-[1.35rem] border border-white/20 bg-[#121d3d] shadow-[0_24px_45px_rgba(0,0,0,0.45),0_1px_0_rgba(255,255,255,0.18)_inset] ring-1 ring-white/10 transition duration-500 [transform:rotateX(6deg)_rotateY(-8deg)_translateZ(0)] group-hover:border-[#f0bc5a]/70 group-hover:shadow-[0_34px_70px_rgba(0,0,0,0.58),0_0_42px_rgba(240,188,90,0.16)] group-hover:[transform:rotateX(0deg)_rotateY(0deg)_translateZ(36px)]">
                 <img
-                  src={project.previewImage}
+                  src={project.previewImage ?? previewUrl(project.url)}
                   alt={`${project.title} preview`}
                   loading="lazy"
                   decoding="async"

@@ -96,6 +96,7 @@ const TiltCard = ({ children, className = "" }: TiltCardProps) => {
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement | null>(null);
   const [spotlightPos, setSpotlightPos] = useState({ x: 0, y: 0 });
   const [activeNav, setActiveNav] = useState("home");
   const [isVideoExpanded, setIsVideoExpanded] = useState(false);
@@ -130,10 +131,24 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setMobileMenuOpen(false);
+      mobileMenuButtonRef.current?.focus();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      element.focus({ preventScroll: true });
       setMobileMenuOpen(false);
       setActiveNav(sectionId);
     }
@@ -149,7 +164,14 @@ export default function Home() {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-white font-sans text-[#0B1A3A] selection:bg-[#E4AC44] selection:text-[#0A152A]">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-3 focus:font-bold focus:text-[#0A152A] focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <nav
+        aria-label="Primary"
         className={`fixed top-0 z-50 w-full transition-all duration-500 ${
           isScrolled
             ? "bg-[#0A152A]/90 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl"
@@ -161,9 +183,11 @@ export default function Home() {
 
           <div className="absolute left-1/2 hidden -translate-x-1/2 space-x-10 text-sm font-semibold text-white/90 md:flex">
             {navItems.map((item) => (
-              <button
+              <a
                 key={item.id}
+                href={`#${item.id}`}
                 onClick={() => scrollToSection(item.id)}
+                aria-current={activeNav === item.id ? "location" : undefined}
                 className="group relative overflow-hidden transition-colors hover:text-[#E4AC44]"
               >
                 <span className={`relative z-10 ${activeNav === item.id ? "text-[#E4AC44]" : ""}`}>{item.label}</span>
@@ -172,7 +196,7 @@ export default function Home() {
                     activeNav === item.id ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
-              </button>
+              </a>
             ))}
             <a
               href="/wiki"
@@ -198,26 +222,34 @@ export default function Home() {
           </div>
 
           <button
+            ref={mobileMenuButtonRef}
             className="text-white transition-colors hover:text-[#E4AC44] md:hidden"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Toggle menu"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
 
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col space-y-6 bg-[#0A152A] px-6 pt-24 md:hidden">
+      <nav
+        id="mobile-navigation"
+        aria-label="Mobile"
+        className={`fixed inset-0 z-40 flex-col space-y-6 bg-[#0A152A] px-6 pt-24 md:hidden ${mobileMenuOpen ? "flex" : "hidden"}`}
+      >
           {navItems.map((item, index) => (
-            <button
+            <a
               key={item.id}
+              href={`#${item.id}`}
               onClick={() => scrollToSection(item.id)}
+              aria-current={activeNav === item.id ? "location" : undefined}
               className="animate-slide-up border-b border-white/10 pb-4 text-left text-2xl font-bold text-white"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {item.label}
-            </button>
+            </a>
           ))}
           <a
             href="/wiki"
@@ -232,11 +264,12 @@ export default function Home() {
           >
             Partner with Us
           </Button>
-        </div>
-      )}
+      </nav>
 
+      <main id="main-content" tabIndex={-1}>
       <header
         id="home"
+        tabIndex={-1}
         className="relative overflow-hidden bg-[#0A152A] pb-48 pt-40 md:pb-64 md:pt-52"
       >
         <div
@@ -315,12 +348,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section id="mission" className="relative z-10 overflow-hidden bg-white py-24">
+      <section id="mission" tabIndex={-1} aria-labelledby="mission-heading" className="relative z-10 overflow-hidden bg-white py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             <div className="pr-0 lg:pr-12">
               <ScrollReveal>
-                <h2 className="group relative mb-8 inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
+                <h2 id="mission-heading" className="group relative mb-8 inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
                   Our Mission
                   <div className="absolute -bottom-2 left-0 h-1.5 w-1/3 bg-[#E4AC44] transition-all duration-500 ease-out group-hover:w-full" />
                 </h2>
@@ -388,12 +421,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="programs" className="relative bg-[#F8F9FA] py-24">
+      <section id="programs" tabIndex={-1} aria-labelledby="programs-heading" className="relative bg-[#F8F9FA] py-24">
         <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-[#0A152A]/10 to-transparent" />
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <ScrollReveal>
             <div className="mb-20 text-center">
-              <h2 className="group relative inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
+              <h2 id="programs-heading" className="group relative inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
                 Our Programs
                 <div className="absolute -bottom-2 left-1/4 h-1.5 w-1/2 bg-[#E4AC44] transition-all duration-500 group-hover:left-0 group-hover:w-full" />
               </h2>
@@ -442,11 +475,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="impact" className="bg-white py-24">
+      <section id="impact" tabIndex={-1} aria-labelledby="impact-heading" className="bg-white py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-12">
           <ScrollReveal>
             <div className="mb-16 text-center">
-              <h2 className="group relative inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
+              <h2 id="impact-heading" className="group relative inline-block text-4xl font-black text-[#0B1A3A] md:text-5xl">
                 Our Impact
                 <div className="absolute -bottom-2 left-1/4 h-1.5 w-1/2 bg-[#E4AC44] transition-all duration-500 group-hover:left-0 group-hover:w-full" />
               </h2>
@@ -507,7 +540,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="join" className="relative overflow-hidden bg-[#0A152A] py-28">
+      <section id="join" tabIndex={-1} aria-labelledby="join-heading" className="relative overflow-hidden bg-[#0A152A] py-28">
         <div
           className="animate-float-slow absolute inset-0 opacity-10"
           style={{ backgroundImage: "radial-gradient(#E4AC44 2px, transparent 2px)", backgroundSize: "40px 40px" }}
@@ -515,7 +548,7 @@ export default function Home() {
 
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center md:px-12">
           <ScrollReveal>
-            <h2 className="mb-12 text-4xl font-black text-white md:text-6xl">Ready to Build Your Future?</h2>
+            <h2 id="join-heading" className="mb-12 text-4xl font-black text-white md:text-6xl">Ready to Build Your Future?</h2>
           </ScrollReveal>
 
           <div className="space-y-8 text-left">
@@ -562,6 +595,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </main>
 
       <footer className="border-t border-white/5 bg-[#050B16] pb-10 pt-20">
         <div className="mx-auto max-w-7xl px-6 md:px-12">

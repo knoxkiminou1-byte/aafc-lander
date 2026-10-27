@@ -656,7 +656,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-xs font-medium text-white/40 md:flex-row">
+          <div className="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-xs font-medium text-white/75 md:flex-row">
             <p>© {new Date().getFullYear()} Artists and Athletes for Change. All rights reserved.</p>
             <div className="mt-4 flex space-x-6 md:mt-0">
               <a href="mailto:contact@aafcbuilders.org?subject=AAFC%20Privacy%20Policy" className="transition-colors hover:text-white">

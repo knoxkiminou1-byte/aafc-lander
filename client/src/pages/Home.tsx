@@ -181,7 +181,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <img src="/aafc-logo.png" alt="AAFC Logo" className="h-16 w-auto mix-blend-lighten" />
 
-          <div className="absolute left-1/2 hidden -translate-x-1/2 space-x-10 text-sm font-semibold text-white/90 md:flex">
+          <div className="absolute left-1/2 hidden -translate-x-1/2 space-x-5 text-sm font-semibold text-white/90 md:flex">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -203,6 +203,14 @@ export default function Home() {
               className="group relative overflow-hidden transition-colors hover:text-[#E4AC44]"
             >
               <span className="relative z-10">Wiki</span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#E4AC44] transition-all duration-300 group-hover:w-full" />
+            </a>
+            <a href="https://aafc-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden transition-colors hover:text-[#E4AC44]">
+              <span className="relative z-10">Portfolio</span>
+              <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#E4AC44] transition-all duration-300 group-hover:w-full" />
+            </a>
+            <a href="https://aafc-module-three.vercel.app" target="_blank" rel="noopener noreferrer" className="group relative overflow-hidden transition-colors hover:text-[#E4AC44]">
+              <span className="relative z-10">Tools</span>
               <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#E4AC44] transition-all duration-300 group-hover:w-full" />
             </a>
           </div>
@@ -257,6 +265,12 @@ export default function Home() {
             style={{ animationDelay: `${navItems.length * 100}ms` }}
           >
             Wiki
+          </a>
+          <a href="https://aafc-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="animate-slide-up border-b border-white/10 pb-4 text-left text-2xl font-bold text-white">
+            Portfolio
+          </a>
+          <a href="https://aafc-module-three.vercel.app" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} className="animate-slide-up border-b border-white/10 pb-4 text-left text-2xl font-bold text-white">
+            Creative Tools
           </a>
           <Button
             className="mt-8 rounded-xl bg-[#E4AC44] py-4 text-lg font-bold uppercase tracking-wide text-[#0A152A] transition-transform active:scale-95"
@@ -623,6 +637,8 @@ export default function Home() {
                     </a>
                   </li>
                 ))}
+                <li><a href="https://aafc-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block transition-transform hover:translate-x-1 hover:text-[#E4AC44]">Portfolio</a></li>
+                <li><a href="https://aafc-module-three.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-block transition-transform hover:translate-x-1 hover:text-[#E4AC44]">Creative Tools</a></li>
               </ul>
             </div>
 

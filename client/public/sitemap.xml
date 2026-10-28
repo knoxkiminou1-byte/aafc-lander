@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.aafcbuilders.org/</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/builds</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/research</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/aafc-mission</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/handoff-eval-agent</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/how-we-build</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/kiminou-knox</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/mission-control-ai</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/pricing-and-engagement</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/technology-we-use</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/web-studio-services</loc><lastmod>2026-10-19</lastmod></url>
-  <url><loc>https://www.aafcbuilders.org/wiki/youth-ai-build-lab</loc><lastmod>2026-10-19</lastmod></url>
+  <url><loc>https://www.aafcbuilders.org/</loc></url>
+  <url><loc>https://www.aafcbuilders.org/builds</loc></url>
+  <url><loc>https://www.aafcbuilders.org/research</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/aafc-mission</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/handoff-eval-agent</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/how-we-build</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/kiminou-knox</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/mission-control-ai</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/pricing-and-engagement</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/technology-we-use</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/web-studio-services</loc></url>
+  <url><loc>https://www.aafcbuilders.org/wiki/youth-ai-build-lab</loc></url>
 </urlset>

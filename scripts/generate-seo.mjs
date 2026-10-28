@@ -27,18 +27,42 @@ assert.equal(articles.length, 9, "The wiki should include exactly nine articles"
 const pages = [...site.pages, ...articles];
 assert.equal(new Set(pages.map(p => p.path)).size, pages.length);
 
+function renderInline(md) {
+  // Preserve safe, crawlable Markdown links in static article HTML before React loads.
+  // Only HTTPS/HTTP URLs and root-relative paths are accepted; other text is escaped.
+  const link = /\[([^\]]+)\]\((https?:\/\/[^\s)]+|\/(?!\/)[^\s)]*)\)/g;
+  let html = "";
+  let from = 0;
+  for (const match of md.matchAll(link)) {
+    html += e(md.slice(from, match.index));
+    const href = match[2];
+    const external = /^https?:\/\//.test(href);
+    html += '<a href="' + e(href) + '"' + (external ? ' rel="noopener noreferrer"' : '') +
+      '>' + e(match[1]) + '</a>';
+    from = match.index + match[0].length;
+  }
+  return html + e(md.slice(from));
+}
 function renderMarkdown(md) {
   return md.split(/\n\s*\n/).filter(Boolean).map(p => {
     const block = p.trim();
     const h = block.match(/^(#{1,3}) (.+)$/);
-    if (h) return "<h2>" + e(h[2]) + "</h2>";
-    return "<p>" + e(block.replace(/\s*\n\s*/g, " ")) + "</p>";
+    if (h) return "<h2>" + renderInline(h[2]) + "</h2>";
+    return "<p>" + renderInline(block.replace(/\s*\n\s*/g, " ")) + "</p>";
   }).join("\n");
 }
 function fallback(page) {
+  const navigation = [
+    { href: "/", label: "AAFC Builders" },
+    { href: "/builds", label: "Builds" },
+    { href: "/research", label: "Research" },
+    { href: "/wiki", label: "Wiki" },
+    { href: "https://aafc-module.vercel.app/", label: "Creative Tools" },
+    { href: "https://aafc-portfolio-three.vercel.app/", label: "Portfolio" }
+  ];
   const nav = '<header style="background:#0b1a3a;padding:20px;color:white"><nav aria-label="Site navigation">' +
-    ['/', '/builds', '/research', '/wiki'].map(p => '<a style="color:white;margin-right:24px" href="' + p + '">' +
-      (p === '/' ? "AAFC Builders" : p.slice(1)) + '</a>').join("") + "</nav></header>";
+    navigation.map(link => '<a style="color:white;margin-right:24px" href="' + e(link.href) + '">' +
+      e(link.label) + '</a>').join("") + "</nav></header>";
   let body = "<h1>" + e(page.heading) + "</h1><p>" + e(page.description) + "</p>";
   if (page.markdown) body += renderMarkdown(page.markdown);
   if (page.path === "/wiki") body += "<h2>Articles</h2><ul>" + articles.map(a =>
@@ -96,7 +120,7 @@ writePage({ path: "/404", index: false, title: "Page Not Found | AAFC Builders",
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   pages.map(p => "  <url><loc>" + e(site.siteUrl + (p.path === "/" ? "/" : p.path)) +
-    "</loc><lastmod>2026-10-19</lastmod></url>").join("\n") + "\n</urlset>\n";
+    "</loc></url>").join("\n") + "\n</urlset>\n";
 fs.writeFileSync(path.join(out, "sitemap.xml"), sitemap);
 fs.writeFileSync(path.join(out, "robots.txt"),
   "User-agent: *\nAllow: /\n\nSitemap: " + site.siteUrl + "/sitemap.xml\n");
